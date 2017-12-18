@@ -14,6 +14,11 @@ public class level_Manager : MonoBehaviour {
 	void Update () {
 		
 	}
+    public void LoadNextScene()
+    {
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentScene + 1);
+    }
 
     public void LoadNewScene(string sceneName)
     {

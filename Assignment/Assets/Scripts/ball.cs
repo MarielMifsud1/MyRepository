@@ -8,13 +8,14 @@ public class ball : MonoBehaviour
 
     paddle_1 paddle;
     Vector3 ballPaddleDiff;
-    bool gameStarted = false;
+    public static bool gameStarted = false;
+    Vector3 ballPos;
     
 
     // Use this for initialization
     void Start()
     {
-      
+        ballPos = transform.position;
         paddle = GameObject.FindObjectOfType<paddle_1>();
 
         ballPaddleDiff = this.transform.position - paddle.transform.position;
@@ -31,6 +32,20 @@ public class ball : MonoBehaviour
             
             this.GetComponent<Rigidbody2D>().velocity = new Vector2(10f, 11f);
             this.GetComponent<Rigidbody2D>().AddForce(transform.forward);
+        }
+
+        if (!gameStarted) 
+        {
+            gameObject.transform.position = ballPos;
+        }
+
+        if (Input.GetMouseButtonDown(0) && !gameStarted)
+        {
+            gameStarted = true;
+            this.GetComponent<Rigidbody2D>().velocity = new Vector2(2f, 10f);
+            
+
+
         }
     }
 
